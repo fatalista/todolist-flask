@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>Task master</title>
+{% endblock %}
+
+{% block body %}
+<h1>Task master</h1>
+    <p><b>Task:</b></p>
+
+    {% for task in tasks %}
+        <p>{{ task.content }} <i>{{ task.date_created.date() }}</i> (<a href="#">Edit</a> / <a href="/delete/{{ task.id }}">Delete</a>)</p>
+    {% endfor %}
+
+    <form action="/edit/{{ task.id }}" method="POST">
+        <input type="text" name="content" id="content" value="{{ task.content }}">
+        <input type="submit" value="Edit task">
+    </form>
+{% endblock %}

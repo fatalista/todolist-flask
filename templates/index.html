@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>Task master</title>
+{% endblock %}
+
+{% block body %}
+<h1>Task master</h1>
+    <p><b>Task:</b></p>
+    {% if tasks|length < 1 %}
+    <p>There are no tasks, pls create 1</p>
+    {% else %}
+    {% endif %}
+    {% for task in tasks %}
+        <p>{{ task.content }} <i>{{ task.date_created.date() }}</i> (<a href="/edit/{{ task.id }}">Edit</a> / <a href="/delete/{{ task.id }}">Delete</a>)</p>
+    {% endfor %}
+
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Add task">
+    </form>
+{% endblock %}
